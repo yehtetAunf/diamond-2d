@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diamond 2D</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn" aria-label="Menu">☰</button>
+    <div class="brand"><span class="diamond">◆</span><span>DIAMOND <b>2D</b></span></div>
+    <button class="icon-btn" aria-label="Notifications">♧<sup>3</sup></button>
+  </header>
+
+  <main class="container">
+    <section class="status-row">
+      <div class="date">▣ <span id="today">22/09/2026</span></div>
+      <div class="live"><span></span> 2D LIVE NOW</div>
+    </section>
+
+    <section class="hero">
+      <div class="tagline">Good Numbers<br><b>Bright Future</b></div>
+      <div class="result-label">3:00 PM RESULT</div>
+      <div class="main-number"><span>7</span><b>9</b></div>
+      <div class="updated" id="updated">✓ Updated 22/09/2026 | 03:01:22 PM | 00:38</div>
+    </section>
+
+    <section class="stats">
+      <div><small>SET</small><strong>12456.77</strong></div>
+      <div><small>VALUE</small><strong>87899.01</strong></div>
+    </section>
+
+    <section class="slots" id="slots"></section>
+
+    <button class="history-btn" id="historyBtn">▤ &nbsp; 2D HISTORY <span>›</span></button>
+
+    <section class="history hidden" id="history">
+      <h2>2D HISTORY</h2>
+      <p>History records will appear here after results are saved.</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="active">⌂<span>Home</span></button>
+    <button>▥<span>Result</span></button>
+    <button>▦<span>Calculator</span></button>
+    <button id="navHistory">▤<span>History</span></button>
+    <button>⚙<span>Settings</span></button>
+  </nav>
+  <footer>◆ Diamond 2D ◆<small>PLAY · WIN · TOGETHER</small></footer>
+  <script src="app.js"></script>
+</body>
+</html>
