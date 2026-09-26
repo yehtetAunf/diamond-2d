@@ -8,27 +8,27 @@
 </head>
 <body>
   <header class="topbar">
-    <button class="icon-btn" aria-label="Menu">☰</button>
+    <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
     <div class="brand"><span class="diamond">◆</span><span>DIAMOND <b>2D</b></span></div>
     <button class="icon-btn" aria-label="Notifications">♧<sup>3</sup></button>
   </header>
 
   <main class="container">
     <section class="status-row">
-      <div class="date">▣ <span id="today">22/09/2026</span></div>
+      <div class="date">▣ <span id="today">--/--/----</span></div>
       <div class="live"><span></span> 2D LIVE NOW</div>
     </section>
 
     <section class="hero">
       <div class="tagline">Good Numbers<br><b>Bright Future</b></div>
-      <div class="result-label">3:00 PM RESULT</div>
-      <div class="main-number"><span>7</span><b>9</b></div>
-      <div class="updated" id="updated">✓ Updated 22/09/2026 | 03:01:22 PM | 00:38</div>
+      <div class="result-label" id="resultLabel">2D RESULT</div>
+      <div class="main-number" id="mainNumber"><span>--</span></div>
+      <div class="updated" id="updated">✓ Updated -- | --:--:-- | --:--</div>
     </section>
 
     <section class="stats">
-      <div><small>SET</small><strong>12456.77</strong></div>
-      <div><small>VALUE</small><strong>87899.01</strong></div>
+      <div><small>SET</small><strong id="setValue">--</strong></div>
+      <div><small>VALUE</small><strong id="valueValue">--</strong></div>
     </section>
 
     <section class="slots" id="slots"></section>
@@ -37,16 +37,29 @@
 
     <section class="history hidden" id="history">
       <h2>2D HISTORY</h2>
-      <p>History records will appear here after results are saved.</p>
+      <div id="historyList"><p>History records will appear here after results are saved.</p></div>
+    </section>
+
+    <section class="admin hidden" id="adminPanel">
+      <div class="admin-head">
+        <h2>ADMIN PANEL</h2>
+        <button id="closeAdmin" class="close-admin">×</button>
+      </div>
+      <p class="admin-note">မပြောင်းသေးတဲ့ လက်ရှိ Result / SET / VALUE ကို မထိခိုက်ပါ။ <b>SAVE</b> နှိပ်ပြီးမှ အသစ်တန်ဖိုးတွေ Update ဖြစ်ပါမယ်။</p>
+      <label>2D Result<input id="adminResult" inputmode="numeric" maxlength="2" placeholder="79"></label>
+      <label>SET<input id="adminSet" inputmode="decimal" placeholder="1,245.67"></label>
+      <label>VALUE<input id="adminValue" inputmode="decimal" placeholder="87,899.01"></label>
+      <button id="saveAdmin" class="save-btn">SAVE</button>
+      <div id="saveMessage" class="save-message"></div>
     </section>
   </main>
 
   <nav class="bottom-nav">
-    <button class="active">⌂<span>Home</span></button>
+    <button class="active" id="navHome">⌂<span>Home</span></button>
     <button>▥<span>Result</span></button>
     <button>▦<span>Calculator</span></button>
     <button id="navHistory">▤<span>History</span></button>
-    <button>⚙<span>Settings</span></button>
+    <button id="navSettings">⚙<span>Settings</span></button>
   </nav>
   <footer>◆ Diamond 2D ◆<small>PLAY · WIN · TOGETHER</small></footer>
   <script src="app.js"></script>
