@@ -1,24 +1,24 @@
-# Diamond 2D — Admin + Cloudflare API
+# Diamond 2D — D1 Admin Build
 
-## What was added
-- Admin Panel: 2D Result / SET / VALUE / SAVE
-- Current data stays unchanged until SAVE is pressed.
-- `/api/state` GET/POST Cloudflare Worker API
-- History entries on SAVE
-- Mobile-safe Admin Panel
-- Local fallback while KV is not connected
+Reference behavior is adapted from the supplied sample ZIP, but sample branding/data are not copied.
 
-## Cloudflare KV setup
-Create a KV namespace, then replace `REPLACE_WITH_YOUR_KV_NAMESPACE_ID` in `wrangler.jsonc` with its namespace ID.
+## Features
+- Diamond 2D mobile UI
+- ☰ menu and Settings open the Admin Panel
+- Admin fields: 2D Result, SET, VALUE
+- SAVE & PUBLISH is the only action that changes public data
+- Before SAVE, the current public values remain unchanged
+- D1 stores current result and history
+- `/api/state` GET/POST Worker API
+- Six existing Diamond 2D display slots remain configurable in the frontend
 
-For production, also add a Worker secret named `ADMIN_KEY` and send it with POST requests. The included browser panel currently demonstrates the save flow; if public admin access must be restricted, add an admin login/auth layer before exposing SAVE.
+## D1
+The project is bound to:
+- binding: `DB`
+- database: `diamond-2d-db`
+- database id: `3ddcdfed-7751-4a85-8e35-6a8a67c5ea26`
+
+If the database is new, run `schema.sql` once in the D1 console.
 
 ## Deploy
-Cloudflare Workers:
-- Build command: None
-- Deploy command: `npx wrangler deploy`
-- Root directory: `/`
-- Production branch: `main`
-
-## Important
-The included `/api/state` stores the admin state in KV. It does not yet fetch a third-party 2D API. That can be connected after the chosen provider's exact API response/authentication is confirmed.
+Commit/push these files to the `main` branch. Cloudflare should deploy using the existing `npx wrangler deploy` configuration.

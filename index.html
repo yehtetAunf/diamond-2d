@@ -41,16 +41,16 @@
     </section>
 
     <section class="admin hidden" id="adminPanel">
-      <div class="admin-head">
-        <h2>ADMIN PANEL</h2>
-        <button id="closeAdmin" class="close-admin">×</button>
+      <div class="admin-titlebar"><span>DIAMOND 2D ADMIN</span><button id="closeAdmin" class="close-admin">×</button></div>
+      <div class="admin-card">
+        <div class="admin-current"><span>CURRENT LIVE</span><b id="adminCurrentResult">--</b><small id="adminCurrentMarket">SET -- · VALUE --</small></div>
+        <p class="admin-note">လက်ရှိ Live data ကို မပြောင်းဘဲ အောက်မှာ ပြင်ဆင်နိုင်ပါတယ်။ <b>SAVE</b> မနှိပ်မချင်း User App မှာ ဘာမှမပြောင်းပါ။</p>
+        <label>2D RESULT<input id="adminResult" inputmode="numeric" maxlength="2" placeholder="79"></label>
+        <label>SET<input id="adminSet" inputmode="decimal" placeholder="1,245.67"></label>
+        <label>VALUE<input id="adminValue" inputmode="decimal" placeholder="87,899.01"></label>
+        <button id="saveAdmin" class="save-btn">SAVE &amp; PUBLISH</button>
+        <div id="saveMessage" class="save-message"></div>
       </div>
-      <p class="admin-note">မပြောင်းသေးတဲ့ လက်ရှိ Result / SET / VALUE ကို မထိခိုက်ပါ။ <b>SAVE</b> နှိပ်ပြီးမှ အသစ်တန်ဖိုးတွေ Update ဖြစ်ပါမယ်။</p>
-      <label>2D Result<input id="adminResult" inputmode="numeric" maxlength="2" placeholder="79"></label>
-      <label>SET<input id="adminSet" inputmode="decimal" placeholder="1,245.67"></label>
-      <label>VALUE<input id="adminValue" inputmode="decimal" placeholder="87,899.01"></label>
-      <button id="saveAdmin" class="save-btn">SAVE</button>
-      <div id="saveMessage" class="save-message"></div>
     </section>
   </main>
 

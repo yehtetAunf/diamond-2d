@@ -60,6 +60,8 @@ async function loadState() {
     const data = await res.json();
     render(data);
     localStorage.setItem("diamond2dState", JSON.stringify(data));
+    $("adminCurrentResult").textContent = data.result || "--";
+    $("adminCurrentMarket").textContent = `SET ${data.set || "--"} · VALUE ${data.value || "--"}`;
   } catch {
     const cached = localState();
     if (cached) render(cached);
@@ -74,11 +76,14 @@ async function loadState() {
 
 function openAdmin() {
   adminPanel.classList.remove("hidden");
+  document.body.classList.add("admin-open");
   const current = localState();
   if (current) {
     $("adminResult").value = current.result || "";
     $("adminSet").value = current.set || "";
     $("adminValue").value = current.value || "";
+    $("adminCurrentResult").textContent = current.result || "--";
+    $("adminCurrentMarket").textContent = `SET ${current.set || "--"} · VALUE ${current.value || "--"}`;
   }
   adminPanel.scrollIntoView({behavior:"smooth", block:"center"});
 }
@@ -124,7 +129,7 @@ $("saveAdmin").addEventListener("click", async () => {
   }
 });
 
-$("closeAdmin").addEventListener("click", () => adminPanel.classList.add("hidden"));
+$("closeAdmin").addEventListener("click", () => { adminPanel.classList.add("hidden"); document.body.classList.remove("admin-open"); });
 $("navSettings").addEventListener("click", openAdmin);
 $("menuBtn").addEventListener("click", openAdmin);
 $("historyBtn").addEventListener("click", () => history.classList.toggle("hidden"));

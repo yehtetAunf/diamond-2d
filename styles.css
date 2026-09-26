@@ -14,3 +14,20 @@
 .history-row{display:grid;grid-template-columns:70px 1fr 1fr;gap:8px;align-items:center;border-bottom:1px solid #e2ebf6;padding:12px 0}
 .history-row b{font-size:26px;color:#0870df}.history-row small{grid-column:1/-1;color:#73809a}
 @media(max-width:650px){.history-row{grid-template-columns:60px 1fr}.history-row span:nth-child(3){grid-column:2}.admin{padding:15px}}
+
+/* Admin panel — adapted from the supplied sample's compact mobile workflow */
+.admin{position:fixed;inset:0;z-index:50;background:#f4f7fb;overflow:auto;padding:0 12px 32px}
+.admin-titlebar{position:sticky;top:0;z-index:2;max-width:760px;margin:0 auto 16px;padding:16px 14px;background:linear-gradient(135deg,#075ca8,#0d8fe0);color:#fff;border-radius:0 0 18px 18px;font-size:22px;font-weight:900;text-align:center;box-shadow:0 6px 18px #0002}
+.close-admin{position:absolute;right:10px;top:9px;width:42px;height:42px;border:0;border-radius:12px;background:#ffffff22;color:#fff;font-size:30px;line-height:1}
+.admin-card{max-width:760px;margin:0 auto;background:#fff;border:1px solid #e2e8f0;border-radius:22px;padding:18px;box-shadow:0 5px 20px #00000010}
+.admin-current{text-align:center;padding:14px;border-radius:18px;background:linear-gradient(180deg,#eef8ff,#fff);margin-bottom:14px}
+.admin-current span{display:block;font-size:12px;font-weight:800;letter-spacing:.8px;color:#557085}
+.admin-current b{display:block;font-size:64px;line-height:1;color:#0872bd;font-weight:950;margin:4px 0}
+.admin-current small{font-weight:700;color:#667085}
+.admin-note{padding:12px;border-radius:14px;background:#fff8df;color:#67551a;font-size:13px;line-height:1.5;margin:0 0 14px}
+.admin-card label{display:block;font-weight:800;font-size:14px;color:#26384a;margin-top:12px}
+.admin-card input{width:100%;min-height:52px;margin-top:7px;padding:12px 14px;border:1.5px solid #cbd5e1;border-radius:12px;font-size:18px;background:#fff;box-sizing:border-box}
+.save-btn{width:100%;min-height:56px;margin-top:18px;border:0;border-radius:14px;background:#159447;color:#fff;font-size:18px;font-weight:900;box-shadow:0 5px 12px #15944733}
+.save-message{min-height:24px;text-align:center;margin-top:10px;font-weight:800;font-size:14px}
+.admin.hidden{display:none!important}
+@media(max-width:520px){.admin{padding-left:9px;padding-right:9px}.admin-card{padding:14px;border-radius:18px}.admin-current b{font-size:58px}.admin-titlebar{font-size:19px}}
