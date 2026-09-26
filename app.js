@@ -120,7 +120,7 @@ $("saveAdmin").addEventListener("click", async () => {
     // Local fallback keeps the SAVE-before-update behavior working during setup.
     localStorage.setItem("diamond2dState", JSON.stringify(payload));
     render(payload);
-    $("saveMessage").textContent = "✓ Saved locally. Cloudflare KV binding မချိတ်ရသေးပါ။";
+    $("saveMessage").textContent = "✓ Saved locally. Cloudflare D1 binding မချိတ်ရသေးပါ။";
   }
 });
 

@@ -6,10 +6,11 @@
   "assets": {
     "directory": "."
   },
-  "kv_namespaces": [
+  "d1_databases": [
     {
-      "binding": "DIAMOND_DATA",
-      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+      "binding": "DB",
+      "database_name": "diamond-2d-db",
+      "database_id": "3ddcdfed-7751-4a85-8e35-6a8a67c5ea26"
     }
   ]
 }

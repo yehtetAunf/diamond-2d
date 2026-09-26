@@ -19,42 +19,63 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/state") {
+      if (!env.DB) return json({error:"D1 binding DB is not configured."}, 500);
+
       if (request.method === "GET") {
-        return json(await readState(env));
+        return json(await readState(env.DB));
       }
 
       if (request.method === "POST") {
-        // Protect this endpoint with an ADMIN_KEY secret in production.
-        const key = request.headers.get("x-admin-key");
-        if (env.ADMIN_KEY && key !== env.ADMIN_KEY) {
-          return new Response("Unauthorized", {status:401});
-        }
-
         let body;
         try { body = await request.json(); }
-        catch { return new Response("Invalid JSON", {status:400}); }
+        catch { return json({error:"Invalid JSON"}, 400); }
 
         const state = sanitize(body);
-        await writeState(env, state);
-        return json(state);
+        const now = state.updatedAt || new Date().toLocaleString("en-GB");
+        const date = state.date || new Date().toLocaleDateString("en-GB");
+
+        try {
+          await env.DB.batch([
+            env.DB.prepare(`UPDATE current_result SET result=?, set_value=?, value=?, updated_at=? WHERE id=1`)
+              .bind(state.result, state.set, state.value, now),
+            env.DB.prepare(`INSERT INTO history (result, set_value, value, created_at) VALUES (?, ?, ?, ?)`)
+              .bind(state.result, state.set, state.value, now)
+          ]);
+          return json(await readState(env.DB));
+        } catch (e) {
+          return json({error:"D1 save failed", detail:String(e?.message || e)}, 500);
+        }
       }
+
+      return new Response("Method Not Allowed", {status:405});
     }
 
     return env.ASSETS.fetch(request);
   }
 };
 
-async function readState(env) {
-  if (env.DIAMOND_DATA) {
-    const saved = await env.DIAMOND_DATA.get("state", "json");
-    if (saved) return saved;
+async function readState(db) {
+  try {
+    const row = await db.prepare(`SELECT id, result, set_value, value, updated_at FROM current_result WHERE id=1`).first();
+    const rows = await db.prepare(`SELECT result, set_value, value, created_at FROM history ORDER BY id DESC LIMIT 30`).all();
+    if (!row) return DEFAULT_STATE;
+    return {
+      ...DEFAULT_STATE,
+      result: row.result,
+      set: row.set_value,
+      value: row.value,
+      updatedAt: row.updated_at,
+      date: new Date().toLocaleDateString("en-GB"),
+      history: (rows.results || []).map(h => ({
+        result: h.result,
+        set: h.set_value,
+        value: h.value,
+        savedAt: h.created_at
+      }))
+    };
+  } catch {
+    return DEFAULT_STATE;
   }
-  return DEFAULT_STATE;
-}
-
-async function writeState(env, state) {
-  if (!env.DIAMOND_DATA) return;
-  await env.DIAMOND_DATA.put("state", JSON.stringify(state));
 }
 
 function sanitize(x) {
@@ -62,26 +83,20 @@ function sanitize(x) {
   const set = String(x.set ?? "").slice(0,30);
   const value = String(x.value ?? "").slice(0,30);
   return {
-    result, set, value,
-    resultLabel: String(x.resultLabel ?? "2D RESULT").slice(0,40),
-    date: String(x.date ?? new Date().toLocaleDateString("en-GB")).slice(0,30),
+    result,
+    set,
+    value,
     updatedAt: String(x.updatedAt ?? new Date().toLocaleString("en-GB")).slice(0,60),
-    countdown: String(x.countdown ?? "--:--").slice(0,20),
-    slots: Array.isArray(x.slots) ? x.slots.slice(0,12).map(s => ({
-      time:String(s.time ?? "").slice(0,20),
-      result:s.result == null ? null : String(s.result).replace(/\D/g,"").slice(0,2).padStart(2,"0")
-    })) : DEFAULT_STATE.slots,
-    history: Array.isArray(x.history) ? x.history.slice(0,30).map(h => ({
-      result:String(h.result ?? "").slice(0,2),
-      set:String(h.set ?? "").slice(0,30),
-      value:String(h.value ?? "").slice(0,30),
-      savedAt:String(h.savedAt ?? "").slice(0,60)
-    })) : []
+    date: String(x.date ?? new Date().toLocaleDateString("en-GB")).slice(0,30)
   };
 }
 
-function json(data) {
+function json(data, status=200) {
   return new Response(JSON.stringify(data), {
-    headers: {"content-type":"application/json; charset=utf-8", "cache-control":"no-store"}
+    status,
+    headers: {
+      "content-type":"application/json; charset=utf-8",
+      "cache-control":"no-store"
+    }
   });
 }
