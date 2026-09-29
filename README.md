@@ -22,3 +22,10 @@ If the database is new, run `schema.sql` once in the D1 console.
 
 ## Deploy
 Commit/push these files to the `main` branch. Cloudflare should deploy using the existing `npx wrangler deploy` configuration.
+
+
+## UI update
+The public page has been redesigned to follow the supplied Monaco-style 2D layout:
+Diamond 2D branding, Published status, large live result, SET/VALUE cards,
+six 2D time/result cards, 2D History, and 3D Live buttons. The existing
+Cloudflare Worker + D1 admin flow is retained.

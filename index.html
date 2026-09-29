@@ -2,66 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
   <title>Diamond 2D</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
-    <div class="brand"><span class="diamond">◆</span><span>DIAMOND <b>2D</b></span></div>
-    <button class="icon-btn" aria-label="Notifications">♧<sup>3</sup></button>
-  </header>
-
-  <main class="container">
-    <section class="status-row">
-      <div class="date">▣ <span id="today">--/--/----</span></div>
-      <div class="live"><span></span> 2D LIVE NOW</div>
-    </section>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-flag">◆</span>
+        <span>DIAMOND <b>2D</b></span>
+      </div>
+      <div class="published">PUBLISHED <span></span></div>
+    </header>
 
     <section class="hero">
-      <div class="tagline">Good Numbers<br><b>Bright Future</b></div>
-      <div class="result-label" id="resultLabel">2D RESULT</div>
+      <div class="watermark watermark-one">◆</div>
+      <div class="watermark watermark-two">◇</div>
       <div class="main-number" id="mainNumber"><span>--</span></div>
-      <div class="updated" id="updated">✓ Updated -- | --:--:-- | --:--</div>
+      <div class="updated" id="updated">✓ Updated -- | --:--:--</div>
     </section>
 
     <section class="stats">
-      <div><small>SET</small><strong id="setValue">--</strong></div>
-      <div><small>VALUE</small><strong id="valueValue">--</strong></div>
+      <div class="stat-card">
+        <small>SET</small>
+        <strong id="setValue">--</strong>
+      </div>
+      <div class="stat-card">
+        <small>VALUE</small>
+        <strong id="valueValue">--</strong>
+      </div>
     </section>
 
     <section class="slots" id="slots"></section>
 
-    <button class="history-btn" id="historyBtn">▤ &nbsp; 2D HISTORY <span>›</span></button>
+    <section class="action-row">
+      <button class="outline-btn" id="historyBtn"><span>◷</span> 2D HISTORY</button>
+      <button class="live-btn" id="live3dBtn"><span>▶</span> 3D LIVE</button>
+    </section>
 
     <section class="history hidden" id="history">
-      <h2>2D HISTORY</h2>
+      <div class="history-title">2D HISTORY</div>
       <div id="historyList"><p>History records will appear here after results are saved.</p></div>
     </section>
 
     <section class="admin hidden" id="adminPanel">
-      <div class="admin-titlebar"><span>DIAMOND 2D ADMIN</span><button id="closeAdmin" class="close-admin">×</button></div>
+      <div class="admin-titlebar">
+        <span>DIAMOND 2D ADMIN</span>
+        <button id="closeAdmin" class="close-admin">×</button>
+      </div>
       <div class="admin-card">
-        <div class="admin-current"><span>CURRENT LIVE</span><b id="adminCurrentResult">--</b><small id="adminCurrentMarket">SET -- · VALUE --</small></div>
-        <p class="admin-note">လက်ရှိ Live data ကို မပြောင်းဘဲ အောက်မှာ ပြင်ဆင်နိုင်ပါတယ်။ <b>SAVE</b> မနှိပ်မချင်း User App မှာ ဘာမှမပြောင်းပါ။</p>
-        <label>2D RESULT<input id="adminResult" inputmode="numeric" maxlength="2" placeholder="79"></label>
-        <label>SET<input id="adminSet" inputmode="decimal" placeholder="1,245.67"></label>
-        <label>VALUE<input id="adminValue" inputmode="decimal" placeholder="87,899.01"></label>
+        <div class="admin-current">
+          <span>CURRENT LIVE</span>
+          <b id="adminCurrentResult">--</b>
+          <small id="adminCurrentMarket">SET -- · VALUE --</small>
+        </div>
+        <p class="admin-note">SAVE &amp; PUBLISH မနှိပ်မချင်း User App ရဲ့ Public Result မပြောင်းပါ။</p>
+        <label>2D RESULT<input id="adminResult" inputmode="numeric" maxlength="2" placeholder="43"></label>
+        <label>SET<input id="adminSet" inputmode="decimal" placeholder="7,952.84"></label>
+        <label>VALUE<input id="adminValue" inputmode="decimal" placeholder="89,583.45"></label>
         <button id="saveAdmin" class="save-btn">SAVE &amp; PUBLISH</button>
         <div id="saveMessage" class="save-message"></div>
       </div>
     </section>
   </main>
 
-  <nav class="bottom-nav">
-    <button class="active" id="navHome">⌂<span>Home</span></button>
-    <button>▥<span>Result</span></button>
-    <button>▦<span>Calculator</span></button>
-    <button id="navHistory">▤<span>History</span></button>
-    <button id="navSettings">⚙<span>Settings</span></button>
-  </nav>
-  <footer>◆ Diamond 2D ◆<small>PLAY · WIN · TOGETHER</small></footer>
+  <button class="menu-fab" id="menuBtn" aria-label="Open settings">☰</button>
+
   <script src="app.js"></script>
 </body>
 </html>

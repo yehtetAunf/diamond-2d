@@ -1,15 +1,15 @@
 const DEFAULT_STATE = {
-  result: "79",
-  set: "1,245.67",
-  value: "87,899.01",
+  result: "43",
+  set: "7,952.84",
+  value: "89,583.45",
   resultLabel: "2D RESULT",
-  date: "22/09/2026",
-  updatedAt: "22/09/2026, 15:01:22",
+  date: "29/09/2026",
+  updatedAt: "29/09/2026, 17:31:32",
   countdown: "--:--",
   slots: [
-    { time: "5:00 PM", result: null }, { time: "6:00 PM", result: null },
-    { time: "7:00 PM", result: null }, { time: "8:00 PM", result: null },
-    { time: "9:00 PM", result: null }, { time: "10:00 PM", result: null }
+    { time: "05:00 PM", result: null }, { time: "06:00 PM", result: null },
+    { time: "07:00 PM", result: null }, { time: "08:00 PM", result: null },
+    { time: "09:00 PM", result: null }, { time: "10:00 PM", result: null }
   ],
   history: []
 };
