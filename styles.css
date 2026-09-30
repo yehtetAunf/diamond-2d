@@ -322,3 +322,17 @@ html,body{height:100%;overflow-x:hidden}
     font-size:8px !important;
   }
 }
+
+/* V6 public page: no admin controls; fit the complete dashboard in the phone viewport */
+@media (max-width:650px){
+  .topbar{height:44px !important}
+  .hero{min-height:128px !important;height:128px !important}
+  .main-number{font-size:64px !important}
+  .stats{margin:4px auto !important}
+  .slots{gap:4px !important}
+  .slot{height:60px !important;min-height:60px !important}
+  .slot-time{font-size:7px !important}
+  .slot-number{font-size:23px !important}
+  .action-row{margin:5px auto 6px !important}
+  .action-row button{height:29px !important;min-height:29px !important}
+}

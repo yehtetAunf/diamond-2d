@@ -29,3 +29,11 @@ The public page has been redesigned to follow the supplied Monaco-style 2D layou
 Diamond 2D branding, Published status, large live result, SET/VALUE cards,
 six 2D time/result cards, 2D History, and 3D Live buttons. The existing
 Cloudflare Worker + D1 admin flow is retained.
+
+
+## V6 Admin separation
+- Public User page no longer contains the Admin menu/button.
+- Admin is a separate `/admin` page.
+- Set a Cloudflare Worker secret named `ADMIN_KEY` to protect Admin login and result publishing.
+- Public users can still read `/api/state`, but POST/publish is rejected unless the request has the correct Admin key.
+- Open the admin page at `/admin` and enter the same `ADMIN_KEY`.

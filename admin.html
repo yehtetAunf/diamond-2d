@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Diamond 2D Admin</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7f9;font-family:Arial,sans-serif;color:#222}
+.wrap{max-width:520px;margin:0 auto;padding:18px}.head{background:linear-gradient(135deg,#0b80aa,#55cbe8);color:#fff;border-radius:0 0 20px 20px;padding:18px;font-size:21px;font-weight:900;text-align:center}
+.card{background:#fff;border-radius:18px;padding:18px;margin-top:14px;box-shadow:0 5px 20px #0001}
+label{display:block;font-weight:800;font-size:13px;margin:12px 0}input{width:100%;height:48px;border:1px solid #ccd5da;border-radius:11px;padding:10px 12px;font-size:17px}
+button{width:100%;height:48px;border:0;border-radius:11px;background:#087faa;color:#fff;font-weight:900;font-size:16px;margin-top:10px}
+.gold{background:linear-gradient(135deg,#ffe56b,#e8a800);color:#5c4600}.msg{text-align:center;margin-top:10px;font-weight:800;min-height:22px}.current{text-align:center;background:#eefaff;border-radius:14px;padding:12px}.current b{display:block;color:#087faa;font-size:48px}.lock{color:#777;font-size:13px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="head">💎 DIAMOND 2D ADMIN</div>
+<div class="wrap">
+  <div class="card" id="loginCard">
+    <div class="lock">Admin Password ထည့်ပြီးမှ Result ပြင်နိုင်ပါမယ်။ User App မှာ ဒီ Admin Panel မပေါ်ပါ။</div>
+    <label>ADMIN PASSWORD<input id="password" type="password" autocomplete="current-password"></label>
+    <button id="login">LOGIN</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+
+  <div class="card" id="editCard" style="display:none">
+    <div class="current"><span>CURRENT 2D RESS</span><b id="current">--</b></div>
+    <label>2D RESS RESULT<input id="result" inputmode="numeric" maxlength="2" placeholder="43"></label>
+    <label>SET<input id="set" inputmode="decimal" placeholder="7,952.84"></label>
+    <label>VALUE<input id="value" inputmode="decimal" placeholder="89,583.45"></label>
+    <button class="gold" id="save">SAVE &amp; PUBLISH</button>
+    <div class="msg" id="msg"></div>
+  </div>
+</div>
+<script>
+let token="";
+const $=id=>document.getElementById(id);
+async function load(){
+  const r=await fetch("/api/state",{cache:"no-store"}); const d=await r.json();
+  $("current").textContent=d.result||"--";
+  $("result").value=d.result||"";
+  $("set").value=d.set||"";
+  $("value").value=d.value||"";
+}
+$("login").onclick=async()=>{
+  const p=$("password").value.trim();
+  if(!p){$("loginMsg").textContent="Password ထည့်ပါ";return}
+  token=p;
+  try{
+    const r=await fetch("/api/admin-check",{headers:{Authorization:"Bearer "+token}});
+    if(!r.ok) throw 0;
+    $("loginCard").style.display="none"; $("editCard").style.display="block";
+    await load();
+  }catch{$("loginMsg").textContent="Password မှားနေပါတယ်";}
+};
+$("save").onclick=async()=>{
+  const body={result:$("result").value,set:$("set").value,value:$("value").value};
+  try{
+    const r=await fetch("/api/state",{method:"POST",headers:{"content-type":"application/json","Authorization":"Bearer "+token},body:JSON.stringify(body)});
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.error||"Save failed");
+    $("current").textContent=d.result||"--";
+    $("msg").textContent="✓ SAVE & PUBLISH အောင်မြင်ပါပြီ";
+  }catch(e){$("msg").textContent="✕ "+e.message}
+};
+</script>
+</body>
+</html>

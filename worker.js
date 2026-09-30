@@ -17,10 +17,19 @@ const DEFAULT_STATE = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/admin") {
+      return env.ASSETS.fetch(new Request(new URL("/admin.html", url), request));
+    }
+    if (url.pathname === "/api/admin-check") {
+      if (request.method !== "GET") return new Response("Method Not Allowed", { status: 405 });
+      if (!env.ADMIN_KEY) return json({ error: "ADMIN_KEY is not configured." }, 500);
+      return isAdmin(request, env) ? json({ ok: true }) : json({ error: "Unauthorized" }, 401);
+    }
     if (url.pathname === "/api/state") {
       if (!env.DB) return json({ error: "D1 binding DB is not configured." }, 500);
       if (request.method === "GET") return json(await readState(env.DB));
       if (request.method === "POST") {
+        if (!isAdmin(request, env)) return json({ error: "Unauthorized" }, 401);
         let body;
         try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
         const state = sanitize(body);
@@ -72,6 +81,11 @@ function normalizeMoney(v) {
   const n = Number(s);
   if (!Number.isFinite(n) || n <= 0) throw new Error("Invalid market number");
   return n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function isAdmin(request, env) {
+  const auth = request.headers.get("Authorization") || "";
+  return Boolean(env.ADMIN_KEY) && auth === `Bearer ${env.ADMIN_KEY}`;
 }
 
 function json(data, status = 200) {
