@@ -177,3 +177,148 @@ body{overflow-x:hidden}
   letter-spacing:1px;
   box-shadow:0 2px 8px rgba(229,174,0,.22);
 }
+
+/* V4: compact full-dashboard phone layout + Diamond sales theme */
+html,body{height:100%;overflow-x:hidden}
+.topbar{height:48px;padding:0 14px}
+.brand{font-size:17px;gap:6px}
+.brand-flag{font-size:17px}
+.published{font-size:8px;padding:6px 10px;gap:4px}
+.published span{width:6px;height:6px}
+
+.hero{
+  min-height:150px !important;
+  height:150px;
+  padding:8px 12px 4px !important;
+}
+.hero:before,.hero:after{opacity:.45}
+.watermark{font-size:55px}
+.watermark-one{left:5px;top:28px}
+.watermark-two{right:18px;bottom:16px;font-size:50px}
+
+.ress-label{
+  margin:0 0 0 !important;
+  padding:3px 9px !important;
+  border-radius:9px !important;
+  font-size:8px !important;
+  background:linear-gradient(135deg,#fff2a8,#f5bf16) !important;
+  color:#725500 !important;
+  box-shadow:0 1px 5px rgba(230,175,0,.25) !important;
+}
+.main-number{
+  font-size:78px !important;
+  line-height:.78 !important;
+  letter-spacing:-7px !important;
+  margin:0 0 7px !important;
+  color:#1687b5 !important;
+  text-shadow:0 2px 0 #fff,0 0 9px rgba(30,160,205,.18);
+}
+.main-number span,.main-number b{color:#1687b5 !important}
+.updated{font-size:9px !important;line-height:1 !important}
+
+.stats{
+  width:calc(100% - 22px) !important;
+  margin:7px auto 7px !important;
+  border-radius:14px !important;
+}
+.stat-card{padding:7px 5px !important}
+.stat-card small{font-size:10px !important;margin-bottom:1px !important}
+.stat-card strong{font-size:15px !important}
+
+.slots{
+  width:calc(100% - 22px) !important;
+  gap:7px !important;
+}
+.slot{
+  min-height:77px !important;
+  height:77px;
+  border-radius:13px !important;
+  border:2px solid #7ed0e8 !important;
+  background:linear-gradient(145deg,#fff,#e9faff 50%,#cfefff) !important;
+  box-shadow:0 3px 9px rgba(56,164,201,.15),inset 0 0 0 1px #fff !important;
+}
+.slot-time{font-size:9px !important;margin-bottom:4px !important;color:#267d9c !important}
+.slot-time span{font-size:10px}
+.slot-number{
+  font-size:28px !important;
+  line-height:1 !important;
+  color:#087faa !important;
+  text-shadow:0 1px #fff !important;
+}
+.slot::after{
+  right:5px !important;
+  bottom:4px !important;
+  padding:2px 5px !important;
+  border-radius:5px !important;
+  font-size:6px !important;
+  background:linear-gradient(135deg,#ffe76a,#f0ad00) !important;
+  color:#634900 !important;
+}
+
+.action-row{
+  width:calc(100% - 22px) !important;
+  gap:7px !important;
+  margin:8px auto 10px !important;
+}
+.action-row button{
+  min-height:36px !important;
+  height:36px;
+  border-radius:18px !important;
+  font-size:9px !important;
+}
+.outline-btn{border-width:1.5px !important}
+.live-btn{box-shadow:0 3px 8px rgba(39,153,193,.22) !important}
+
+.fullscreen-fab,.menu-fab{width:38px !important;height:38px !important;font-size:18px !important}
+.fullscreen-fab{right:10px !important;bottom:58px !important}
+.menu-fab{right:10px !important;bottom:12px !important}
+
+.history{width:calc(100% - 22px) !important;margin:5px auto 10px !important;padding:10px !important}
+.history-title{font-size:14px !important}
+.history-row{padding:7px 0 !important}
+
+/* V5: smaller six result boxes for full-screen phone visibility */
+@media (max-width:650px){
+  .hero{min-height:142px !important;height:142px !important}
+  .main-number{font-size:70px !important;margin-bottom:5px !important}
+  .ress-label{font-size:7px !important;padding:2px 8px !important}
+  .updated{font-size:8px !important}
+
+  .stats{margin:5px auto 5px !important}
+  .stat-card{padding:5px 4px !important}
+  .stat-card small{font-size:9px !important}
+  .stat-card strong{font-size:14px !important}
+
+  .slots{
+    gap:5px !important;
+    width:calc(100% - 18px) !important;
+  }
+  .slot{
+    min-height:65px !important;
+    height:65px !important;
+    border-radius:11px !important;
+  }
+  .slot-time{
+    font-size:8px !important;
+    margin-bottom:2px !important;
+  }
+  .slot-time span{font-size:8px !important}
+  .slot-number{font-size:25px !important}
+  .slot::after{
+    right:4px !important;
+    bottom:3px !important;
+    padding:1px 4px !important;
+    font-size:5px !important;
+  }
+
+  .action-row{
+    width:calc(100% - 18px) !important;
+    margin:6px auto 7px !important;
+    gap:5px !important;
+  }
+  .action-row button{
+    min-height:32px !important;
+    height:32px !important;
+    font-size:8px !important;
+  }
+}
