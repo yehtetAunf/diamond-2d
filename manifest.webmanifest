@@ -1,0 +1,10 @@
+{
+  "name": "Diamond 2D",
+  "short_name": "Diamond 2D",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "orientation": "portrait",
+  "icons": []
+}

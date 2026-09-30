@@ -178,3 +178,7 @@ $("live3dBtn").addEventListener("click", () => {
 
 loadState();
 setInterval(loadState, 15000);
+
+const fullscreenBtn=document.getElementById("fullscreenBtn");
+if(fullscreenBtn) fullscreenBtn.onclick=async()=>{try{document.fullscreenElement?await document.exitFullscreen():await document.documentElement.requestFullscreen()}catch(e){}};
+if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));
