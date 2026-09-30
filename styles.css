@@ -10,7 +10,7 @@ html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;backgr
 body{overflow-x:hidden}
 .app-shell{min-height:100vh;background:#fff}
 .topbar{
-  height:76px;display:flex;align-items:center;justify-content:space-between;
+  height:58px;display:flex;align-items:center;justify-content:space-between;
   padding:0 24px;border-bottom:1px solid #eee;background:#fff
 }
 .brand{display:flex;align-items:center;gap:8px;color:var(--red);font-size:24px;font-weight:900;font-style:italic;letter-spacing:-1px}
@@ -23,7 +23,7 @@ body{overflow-x:hidden}
 .published span{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block}
 
 .hero{
-  position:relative;min-height:300px;padding:38px 20px 12px;display:flex;
+  position:relative;min-height:218px;padding:18px 20px 8px;display:flex;
   flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
   background:
     linear-gradient(25deg,transparent 0 25%,rgba(216,0,43,.07) 25.2%,transparent 26%),
@@ -40,13 +40,13 @@ body{overflow-x:hidden}
 .watermark-one{left:18px;top:90px}
 .watermark-two{right:45px;bottom:55px;font-size:115px}
 .main-number{
-  position:relative;z-index:1;font-size:155px;line-height:.90;font-weight:900;
-  letter-spacing:-18px;margin:0 0 22px
+  position:relative;z-index:1;font-size:112px;line-height:.84;font-weight:900;
+  letter-spacing:-18px;margin:0 0 10px
 }
 .main-number span,.main-number b{color:var(--red)}
 .main-number span{margin-right:1px}
 .updated{
-  position:relative;z-index:1;color:#bd1838;font-size:15px;font-weight:800;
+  position:relative;z-index:1;color:#bd1838;font-size:12px;font-weight:800;
   text-align:center
 }
 
@@ -65,19 +65,19 @@ body{overflow-x:hidden}
   grid-template-columns:1fr 1fr;gap:14px
 }
 .slot{
-  min-height:132px;border:2px solid var(--line);border-radius:22px;background:#fff;
+  min-height:94px;border:2px solid var(--line);border-radius:22px;background:#fff;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   box-shadow:0 3px 10px rgba(216,0,43,.05)
 }
 .slot-time{color:#a91b38;font-size:16px;font-weight:900;margin-bottom:14px}
 .slot-time span{font-size:17px;margin-right:4px}
-.slot-number{color:var(--red);font-size:43px;font-weight:900;line-height:1}
+.slot-number{color:var(--red);font-size:31px;font-weight:900;line-height:1}
 .action-row{
-  width:calc(100% - 38px);max-width:900px;margin:14px auto 22px;
+  width:calc(100% - 38px);max-width:900px;margin:9px auto 12px;
   display:grid;grid-template-columns:1fr 1fr;gap:14px
 }
 .action-row button{
-  min-height:50px;border-radius:30px;font-size:16px;font-weight:900;cursor:pointer
+  min-height:42px;border-radius:30px;font-size:16px;font-weight:900;cursor:pointer
 }
 .outline-btn{border:2px solid var(--red);background:#fff;color:#a91333}
 .live-btn{border:0;background:var(--red2);color:#fff;box-shadow:0 5px 12px rgba(217,0,43,.18)}
@@ -116,18 +116,18 @@ body{overflow-x:hidden}
   .brand-flag{font-size:20px}
   .published{font-size:10px;padding:8px 12px}
   .hero{min-height:335px;padding-top:45px}
-  .main-number{font-size:112px;letter-spacing:-10px;margin-bottom:18px}
+  .main-number{font-size:86px;letter-spacing:-8px;margin-bottom:10px}
   .updated{font-size:13px}
   .stats{width:calc(100% - 30px);margin-bottom:18px}
   .stat-card{padding:16px 8px}
   .stat-card small{font-size:15px}
   .stat-card strong{font-size:22px}
   .slots{width:calc(100% - 30px);gap:12px}
-  .slot{min-height:125px;border-radius:18px}
+  .slot{min-height:94px;border-radius:15px}
   .slot-time{font-size:13px;margin-bottom:16px}
   .slot-number{font-size:42px}
-  .action-row{width:calc(100% - 30px);gap:10px;margin-top:20px}
-  .action-row button{font-size:13px;min-height:55px}
+  .action-row{width:calc(100% - 30px);gap:10px;margin-top:9px}
+  .action-row button{font-size:13px;min-height:42px}
   .watermark{font-size:95px}
   .watermark-one{left:-2px}
   .watermark-two{right:10px}
@@ -140,3 +140,40 @@ body{overflow-x:hidden}
 .outline-btn{border-color:#79bfdc;color:#176f91;background:linear-gradient(145deg,#fff,#e9f8ff)}
 .live-btn{background:linear-gradient(145deg,#0d8dbb,#5bd1ee,#1685ac);box-shadow:0 5px 14px rgba(39,153,193,.28)}
 .fullscreen-fab{position:fixed;right:16px;bottom:78px;z-index:20;width:48px;height:48px;border:0;border-radius:50%;background:linear-gradient(145deg,#fff,#dff6ff);color:#167ca6;font-size:24px;box-shadow:0 5px 20px rgba(0,90,130,.18)}
+
+/* 2D Ress sales emphasis */
+.slot-number{
+  color:#087fae !important;
+  font-weight:1000;
+  font-size:clamp(32px,8vw,52px);
+  letter-spacing:1px;
+}
+.slot:has(.slot-number:not(:empty)){
+  position:relative;
+}
+.slot::after{
+  content:"2D RESS";
+  position:absolute;
+  right:10px;
+  bottom:8px;
+  padding:3px 8px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#ffd83d,#f3ad00);
+  color:#5b4300;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.5px;
+}
+
+.ress-label{
+  position:relative;z-index:1;
+  margin-bottom:2px;
+  padding:5px 14px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ffe45b,#f2b300);
+  color:#604700;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:1px;
+  box-shadow:0 2px 8px rgba(229,174,0,.22);
+}
